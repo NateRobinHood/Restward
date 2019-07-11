@@ -1,0 +1,68 @@
+//******************************************************************************
+//
+//  SOURCE FILE:   CustomDrawnTreeView.Designer.cs
+//
+//  DESCRIPTION:   <PLEASE TYPE FILE DESCRPTION>.
+//
+//  TARGET FILES:  Restward.exe
+//
+//  Copyright (c) 2015 by Intelligrated.
+//  The information contained herein is the confidential and proprietary
+//  information of Intelligrated.  This information is protected, among
+//  others, by the patent, copyright, trademark, and trade secret laws of the
+//  United States and its several states.  Any use, copying, or reverse
+//  engineering is strictly prohibited.  This software has been developed at
+//  private expense and accordingly, if used under Government contract, the use,
+//  reproduction or disclosure of this information is subject to the
+//  restrictions set forth under the contract between Intelligrated and its
+//  customer.  By viewing or receiving this information, you consent to the
+//  foregoing.
+//
+//******************************************************************************
+//
+//  $LastChangedDate: 2015-06-08 09:16:14 -0400 (Mon, 08 Jun 2015) $
+//
+//  $LastChangedRevision: 92919 $
+//
+//  $LastChangedBy: intellig\nathan.blessing $
+//
+//  $HeadURL: https://ilinkserv.intelligrated.com/svn/Intelligrated/!Private/Trunk/Tools/MC4Configuration-Sprint1-(Rev93283)/Source/Restward/Projects/Restward/CustomDrawnTreeView.Designer.cs $
+//
+//******************************************************************************
+
+namespace Restward
+{
+    partial class CustomDrawnTreeView
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+        }
+
+        #endregion
+    }
+}
