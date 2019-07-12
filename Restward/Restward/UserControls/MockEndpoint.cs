@@ -30,6 +30,8 @@ namespace Restward.UserControls
                 if (AMRD.ShowDialog() == DialogResult.OK)
                 {
                     ListViewItem newReponseItem = new ListViewItem(AMRD.MockResponseName);
+
+                    listViewResponses.Items.Add(newReponseItem);
                 }
             }
         }
