@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Restward.Components;
+using Restward.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +16,8 @@ namespace Restward
 {
     public partial class Form1 : Form
     {
+        private TreeNode m_RootProjectNode;
+
         public Form1()
         {
             InitializeComponent();
@@ -44,9 +48,34 @@ namespace Restward
 
             this.treeViewServices.ExpandedImage = TreeViewExpandedImage;
             this.treeViewServices.CollapsedImage = TreeViewCollapsedImage;
+            //this.treeViewServices.DrawMode = TreeViewDrawMode.OwnerDrawAll;
 
             this.scMain.Panel2.BackgroundImage = WorkspaceImage;
             this.scMain.Panel2.BackgroundImageLayout = ImageLayout.Tile;
+
+            m_RootProjectNode = new TreeNode("Project");
+            treeViewServices.Nodes.Add(m_RootProjectNode);
+
+            tabControlMain.TabPages.Clear();
+        }
+
+        //Event Handlers
+        private void toolStripButtonAdd_Click(object sender, EventArgs e)
+        {
+            using (AddMockServiceDialog AMSD = new AddMockServiceDialog())
+            {
+                if (AMSD.ShowDialog() == DialogResult.OK)
+                {
+                    TreeNode newMockServiceTreeNode = new TreeNode(AMSD.MockServiceName);
+                    MockServiceTabPage newMockServiceTabPage = new MockServiceTabPage(AMSD.MockServiceName);
+
+                    newMockServiceTreeNode.Tag = newMockServiceTabPage;
+                    m_RootProjectNode.Nodes.Add(newMockServiceTreeNode);
+
+                    newMockServiceTabPage.Tag = newMockServiceTreeNode;
+                    tabControlMain.TabPages.Add(newMockServiceTabPage);
+                }
+            }
         }
     }
 }
