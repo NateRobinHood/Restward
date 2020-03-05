@@ -23,8 +23,11 @@ namespace Restward
             this.DoubleBuffered = true;
 
             this.OwnerDraw = true;
+            this.HideSelection = false;
 
             this.DrawItem += new DrawListViewItemEventHandler(listView_DrawItem);
+            this.DrawColumnHeader += listView_DrawColumnHeader;
+            this.DrawSubItem += ListView_DrawSubItem;
             this.MouseMove += new MouseEventHandler(listView_MouseMove);
             this.MouseLeave += new EventHandler(listView_MouseLeave);
             this.MouseClick += new MouseEventHandler(listView_MouseClick);
@@ -102,6 +105,21 @@ namespace Restward
                 }
                 BufGraphics.Graphics.DrawPath(BorderPen, RoundedBounds);
             }
+            else if(e.Item.Selected) //if((e.State & ListViewItemStates.Selected) == ListViewItemStates.Selected)
+            {
+                Pen BorderPen = Pens.LightGray;
+                Color BeginGradient = ColorManager.TreeViewSelectedBeginGradient;// Color.FromArgb(255, 195, 0);
+                Color EndGradient = ColorManager.TreeViewSelectedEndGradient;// Color.FromArgb(255, 110, 0);
+
+                LinearGradientMode RightMode = LinearGradientMode.Vertical;
+
+                using (LinearGradientBrush b = new LinearGradientBrush(Bounds, BeginGradient, EndGradient, RightMode))
+                {
+                    //BufGraphics.Graphics.FillRectangle(b, Bounds);
+                    BufGraphics.Graphics.FillPath(b, RoundedBounds);
+                }
+                BufGraphics.Graphics.DrawPath(BorderPen, RoundedBounds);
+            }
 
             if (e.Item.ImageIndex != -1)
             {
@@ -124,6 +142,16 @@ namespace Restward
             }
 
             BufGraphics.Render(e.Graphics);
+        }
+
+        private void listView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
+
+        private void ListView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            e.DrawDefault = true;
         }
 
         private void listView_MouseMove(object sender, MouseEventArgs e)
@@ -180,6 +208,12 @@ namespace Restward
                     {
                         ItemClicked(this, new ListViewItemSelectionChangedEventArgs(this.Items[i], i, true));
                     }
+
+                    this.Items[i].Selected = true;
+                }
+                else
+                {
+                    this.Items[i].Selected = false;
                 }
             }
         }

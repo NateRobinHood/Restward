@@ -26,5 +26,11 @@ namespace Restward
         public static Color TabHoverSelectedEndGradient = Color.FromArgb(255, 130, 0);
 
         public static Color WorkspaceBackground = Color.FromArgb(229, 229, 229);
+
+        public static Color TreeViewSelectedBeginGradient = Color.FromArgb(240, 240, 240);
+        public static Color TreeViewSelectedEndGradient = Color.FromArgb(219, 219, 219);
+
+        public static Color TreeViewFocusedBeginGradient = Color.FromArgb(255, 195, 0);
+        public static Color TreeViewFocusedEndGradient = Color.FromArgb(255, 110, 0);
     }
 }

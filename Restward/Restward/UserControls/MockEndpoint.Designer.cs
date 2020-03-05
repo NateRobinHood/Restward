@@ -35,8 +35,19 @@
             this.comboBoxStatusCode = new System.Windows.Forms.ComboBox();
             this.comboBoxContentType = new System.Windows.Forms.ComboBox();
             this.rtbResponse = new System.Windows.Forms.RichTextBox();
+            this.comboBoxHttpMethod = new System.Windows.Forms.ComboBox();
             this.listViewResponses = new Restward.CustomDrawnListView();
+            this.lblHttpMethod = new System.Windows.Forms.Label();
+            this.lblResponseCode = new System.Windows.Forms.Label();
+            this.lblContentType = new System.Windows.Forms.Label();
+            this.checkBoxReponseDelay = new System.Windows.Forms.CheckBox();
+            this.txtResponseDelay = new System.Windows.Forms.TextBox();
+            this.lblMs = new System.Windows.Forms.Label();
+            this.groupBoxMatch = new System.Windows.Forms.GroupBox();
+            this.groupBoxReponse = new System.Windows.Forms.GroupBox();
             this.toolStripMain.SuspendLayout();
+            this.groupBoxMatch.SuspendLayout();
+            this.groupBoxReponse.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripMain
@@ -46,7 +57,7 @@
             this.toolStripButtonAdd});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(423, 25);
+            this.toolStripMain.Size = new System.Drawing.Size(606, 25);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
             // 
@@ -62,30 +73,35 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress.Location = new System.Drawing.Point(0, 28);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(423, 20);
+            this.txtAddress.Size = new System.Drawing.Size(606, 20);
             this.txtAddress.TabIndex = 1;
             this.txtAddress.Text = "http://localhost:8080/";
+            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
             // comboBoxStatusCode
             // 
             this.comboBoxStatusCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxStatusCode.FormattingEnabled = true;
-            this.comboBoxStatusCode.Location = new System.Drawing.Point(0, 194);
+            this.comboBoxStatusCode.Location = new System.Drawing.Point(95, 13);
             this.comboBoxStatusCode.Name = "comboBoxStatusCode";
-            this.comboBoxStatusCode.Size = new System.Drawing.Size(155, 21);
+            this.comboBoxStatusCode.Size = new System.Drawing.Size(189, 21);
             this.comboBoxStatusCode.TabIndex = 3;
+            this.comboBoxStatusCode.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatusCode_SelectedIndexChanged);
             // 
             // comboBoxContentType
             // 
             this.comboBoxContentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxContentType.FormattingEnabled = true;
-            this.comboBoxContentType.Location = new System.Drawing.Point(161, 194);
+            this.comboBoxContentType.Location = new System.Drawing.Point(95, 40);
             this.comboBoxContentType.Name = "comboBoxContentType";
-            this.comboBoxContentType.Size = new System.Drawing.Size(168, 21);
+            this.comboBoxContentType.Size = new System.Drawing.Size(189, 21);
             this.comboBoxContentType.TabIndex = 4;
+            this.comboBoxContentType.SelectedIndexChanged += new System.EventHandler(this.comboBoxContentType_SelectedIndexChanged);
             // 
             // rtbResponse
             // 
@@ -95,35 +111,138 @@
             this.rtbResponse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbResponse.Location = new System.Drawing.Point(0, 216);
             this.rtbResponse.Name = "rtbResponse";
-            this.rtbResponse.Size = new System.Drawing.Size(423, 204);
+            this.rtbResponse.Size = new System.Drawing.Size(606, 204);
             this.rtbResponse.TabIndex = 5;
             this.rtbResponse.Text = "";
+            this.rtbResponse.TextChanged += new System.EventHandler(this.rtbResponse_TextChanged);
+            // 
+            // comboBoxHttpMethod
+            // 
+            this.comboBoxHttpMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxHttpMethod.FormattingEnabled = true;
+            this.comboBoxHttpMethod.Location = new System.Drawing.Point(94, 13);
+            this.comboBoxHttpMethod.Name = "comboBoxHttpMethod";
+            this.comboBoxHttpMethod.Size = new System.Drawing.Size(189, 21);
+            this.comboBoxHttpMethod.TabIndex = 7;
+            this.comboBoxHttpMethod.SelectedIndexChanged += new System.EventHandler(this.comboBoxHttpMethod_SelectedIndexChanged);
             // 
             // listViewResponses
             // 
+            this.listViewResponses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewResponses.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listViewResponses.HideSelection = false;
             this.listViewResponses.Location = new System.Drawing.Point(0, 47);
             this.listViewResponses.Name = "listViewResponses";
             this.listViewResponses.OwnerDraw = true;
-            this.listViewResponses.Size = new System.Drawing.Size(423, 147);
+            this.listViewResponses.Size = new System.Drawing.Size(301, 163);
             this.listViewResponses.TabIndex = 6;
             this.listViewResponses.UseCompatibleStateImageBehavior = false;
             this.listViewResponses.View = System.Windows.Forms.View.List;
+            this.listViewResponses.SelectedIndexChanged += new System.EventHandler(this.listViewResponses_SelectedIndexChanged);
+            // 
+            // lblHttpMethod
+            // 
+            this.lblHttpMethod.AutoSize = true;
+            this.lblHttpMethod.Location = new System.Drawing.Point(6, 16);
+            this.lblHttpMethod.Name = "lblHttpMethod";
+            this.lblHttpMethod.Size = new System.Drawing.Size(66, 13);
+            this.lblHttpMethod.TabIndex = 8;
+            this.lblHttpMethod.Text = "Http Method";
+            // 
+            // lblResponseCode
+            // 
+            this.lblResponseCode.AutoSize = true;
+            this.lblResponseCode.Location = new System.Drawing.Point(6, 16);
+            this.lblResponseCode.Name = "lblResponseCode";
+            this.lblResponseCode.Size = new System.Drawing.Size(83, 13);
+            this.lblResponseCode.TabIndex = 9;
+            this.lblResponseCode.Text = "Response Code";
+            // 
+            // lblContentType
+            // 
+            this.lblContentType.AutoSize = true;
+            this.lblContentType.Location = new System.Drawing.Point(7, 43);
+            this.lblContentType.Name = "lblContentType";
+            this.lblContentType.Size = new System.Drawing.Size(71, 13);
+            this.lblContentType.TabIndex = 10;
+            this.lblContentType.Text = "Content Type";
+            // 
+            // checkBoxReponseDelay
+            // 
+            this.checkBoxReponseDelay.AutoSize = true;
+            this.checkBoxReponseDelay.Location = new System.Drawing.Point(10, 69);
+            this.checkBoxReponseDelay.Name = "checkBoxReponseDelay";
+            this.checkBoxReponseDelay.Size = new System.Drawing.Size(104, 17);
+            this.checkBoxReponseDelay.TabIndex = 11;
+            this.checkBoxReponseDelay.Text = "Response Delay";
+            this.checkBoxReponseDelay.UseVisualStyleBackColor = true;
+            this.checkBoxReponseDelay.CheckedChanged += new System.EventHandler(this.checkBoxReponseDelay_CheckedChanged);
+            // 
+            // txtResponseDelay
+            // 
+            this.txtResponseDelay.Location = new System.Drawing.Point(120, 67);
+            this.txtResponseDelay.Name = "txtResponseDelay";
+            this.txtResponseDelay.Size = new System.Drawing.Size(138, 20);
+            this.txtResponseDelay.TabIndex = 12;
+            this.txtResponseDelay.TextChanged += new System.EventHandler(this.txtResponseDelay_TextChanged);
+            // 
+            // lblMs
+            // 
+            this.lblMs.AutoSize = true;
+            this.lblMs.Location = new System.Drawing.Point(264, 70);
+            this.lblMs.Name = "lblMs";
+            this.lblMs.Size = new System.Drawing.Size(20, 13);
+            this.lblMs.TabIndex = 13;
+            this.lblMs.Text = "ms";
+            // 
+            // groupBoxMatch
+            // 
+            this.groupBoxMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxMatch.Controls.Add(this.comboBoxHttpMethod);
+            this.groupBoxMatch.Controls.Add(this.lblHttpMethod);
+            this.groupBoxMatch.Location = new System.Drawing.Point(307, 54);
+            this.groupBoxMatch.Name = "groupBoxMatch";
+            this.groupBoxMatch.Size = new System.Drawing.Size(296, 49);
+            this.groupBoxMatch.TabIndex = 14;
+            this.groupBoxMatch.TabStop = false;
+            this.groupBoxMatch.Text = "Match Conditions";
+            // 
+            // groupBoxReponse
+            // 
+            this.groupBoxReponse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxReponse.Controls.Add(this.lblResponseCode);
+            this.groupBoxReponse.Controls.Add(this.comboBoxStatusCode);
+            this.groupBoxReponse.Controls.Add(this.lblMs);
+            this.groupBoxReponse.Controls.Add(this.comboBoxContentType);
+            this.groupBoxReponse.Controls.Add(this.txtResponseDelay);
+            this.groupBoxReponse.Controls.Add(this.lblContentType);
+            this.groupBoxReponse.Controls.Add(this.checkBoxReponseDelay);
+            this.groupBoxReponse.Location = new System.Drawing.Point(307, 109);
+            this.groupBoxReponse.Name = "groupBoxReponse";
+            this.groupBoxReponse.Size = new System.Drawing.Size(296, 101);
+            this.groupBoxReponse.TabIndex = 15;
+            this.groupBoxReponse.TabStop = false;
+            this.groupBoxReponse.Text = "Response";
             // 
             // MockEndpoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBoxReponse);
+            this.Controls.Add(this.groupBoxMatch);
             this.Controls.Add(this.listViewResponses);
             this.Controls.Add(this.rtbResponse);
-            this.Controls.Add(this.comboBoxContentType);
-            this.Controls.Add(this.comboBoxStatusCode);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.toolStripMain);
             this.Name = "MockEndpoint";
-            this.Size = new System.Drawing.Size(423, 420);
+            this.Size = new System.Drawing.Size(606, 420);
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
+            this.groupBoxMatch.ResumeLayout(false);
+            this.groupBoxMatch.PerformLayout();
+            this.groupBoxReponse.ResumeLayout(false);
+            this.groupBoxReponse.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +257,14 @@
         private System.Windows.Forms.RichTextBox rtbResponse;
         private System.Windows.Forms.ToolStripButton toolStripButtonAdd;
         private CustomDrawnListView listViewResponses;
+        private System.Windows.Forms.ComboBox comboBoxHttpMethod;
+        private System.Windows.Forms.Label lblHttpMethod;
+        private System.Windows.Forms.Label lblResponseCode;
+        private System.Windows.Forms.Label lblContentType;
+        private System.Windows.Forms.CheckBox checkBoxReponseDelay;
+        private System.Windows.Forms.TextBox txtResponseDelay;
+        private System.Windows.Forms.Label lblMs;
+        private System.Windows.Forms.GroupBox groupBoxMatch;
+        private System.Windows.Forms.GroupBox groupBoxReponse;
     }
 }

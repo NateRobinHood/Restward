@@ -131,13 +131,13 @@ namespace Restward
                     if (e.Node == this.SelectedNode)
                     {
                         Pen BorderPen = Pens.LightGray;
-                        Color BeginGradient = Color.FromArgb(240, 240, 240);
-                        Color EndGradient = Color.FromArgb(219, 219, 219);
+                        Color BeginGradient = ColorManager.TreeViewSelectedBeginGradient;
+                        Color EndGradient = ColorManager.TreeViewSelectedEndGradient;
                         if (this.Focused)
                         {
                             BorderPen = Pens.DimGray;
-                            BeginGradient = Color.FromArgb(255, 195, 0);
-                            EndGradient = Color.FromArgb(255, 110, 0);
+                            BeginGradient = ColorManager.TreeViewFocusedBeginGradient;
+                            EndGradient = ColorManager.TreeViewFocusedEndGradient;
                         }
                         LinearGradientMode GradientMode = LinearGradientMode.Vertical;
 

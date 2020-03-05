@@ -1,4 +1,5 @@
-﻿using Restward.UserControls;
+﻿using Restward.Data;
+using Restward.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,12 @@ namespace Restward.Components
     public class MockServiceTabPage : TabPage
     {
         private MockRestServer m_MockRestServerUserControl;
+        private RestServerData m_RestServerData;
 
-        public MockServiceTabPage() : base()
+        public MockServiceTabPage(RestServerData data) : base(data.Name)
         {
-            m_MockRestServerUserControl = new MockRestServer();
-            this.Controls.Add(m_MockRestServerUserControl);
-            m_MockRestServerUserControl.Dock = DockStyle.Fill;
-        }
-
-        public MockServiceTabPage(string name) : base(name)
-        {
-            m_MockRestServerUserControl = new MockRestServer();
+            m_RestServerData = data;
+            m_MockRestServerUserControl = new MockRestServer(data);
             this.Controls.Add(m_MockRestServerUserControl);
             m_MockRestServerUserControl.Dock = DockStyle.Fill;
         }
@@ -31,6 +27,14 @@ namespace Restward.Components
             get
             {
                 return m_MockRestServerUserControl;
+            }
+        }
+
+        public RestServerData RestServerData
+        {
+            get
+            {
+                return m_RestServerData;
             }
         }
     }

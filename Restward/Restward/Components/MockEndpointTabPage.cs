@@ -1,4 +1,5 @@
-﻿using Restward.UserControls;
+﻿using Restward.Data;
+using Restward.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,12 @@ namespace Restward.Components
     public class MockEndpointTabPage : TabPage
     {
         private MockEndpoint m_MockEndpointUserControl;
+        private EndpointData m_EndpointData;
 
-        public MockEndpointTabPage() : base()
+        public MockEndpointTabPage(EndpointData data) : base(data.Name)
         {
-            m_MockEndpointUserControl = new MockEndpoint();
-            this.Controls.Add(m_MockEndpointUserControl);
-            m_MockEndpointUserControl.Dock = DockStyle.Fill;
-        }
-
-        public MockEndpointTabPage(string name) : base(name)
-        {
-            m_MockEndpointUserControl = new MockEndpoint();
+            m_EndpointData = data;
+            m_MockEndpointUserControl = new MockEndpoint(data);
             this.Controls.Add(m_MockEndpointUserControl);
             m_MockEndpointUserControl.Dock = DockStyle.Fill;
         }
@@ -31,6 +27,14 @@ namespace Restward.Components
             get
             {
                 return m_MockEndpointUserControl;
+            }
+        }
+
+        public EndpointData EndpointData
+        {
+            get
+            {
+                return m_EndpointData;
             }
         }
     }
