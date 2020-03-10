@@ -53,13 +53,15 @@ namespace Restward.UserControls
                 }
             }
 
+
             if (data.HttpEndpointAddress != string.Empty)
             {
-                txtAddress.Text = m_EndpointData.Owner.ListenerAddress + data.HttpEndpointAddress;
+                txtAddress.Text = data.HttpEndpointAddress;
+                lblListenerAddress.Text = m_EndpointData.Owner.ListenerAddress + data.HttpEndpointAddress;
             }
             else
             {
-                txtAddress.Text = m_EndpointData.Owner.ListenerAddress;
+                lblListenerAddress.Text = m_EndpointData.Owner.ListenerAddress;
             }
 
             ProjectData.OnRestServerChanged += ProjectData_OnRestServerChanged;
@@ -98,6 +100,7 @@ namespace Restward.UserControls
             txtResponseDelay.Enabled = enable;
             rtbResponse.Enabled = enable;
             toolStripButtonAdd.Enabled = enable;
+            toolStripButtonRemovePattern.Enabled = enable;
         }
 
         private void UpdateSelectedPattern(PatternData data)
@@ -125,6 +128,7 @@ namespace Restward.UserControls
             else
             {
                 SetReponseEnables(false);
+                toolStripButtonRemovePattern.Enabled = false;
             }
         }
 
@@ -140,6 +144,7 @@ namespace Restward.UserControls
                     txtResponseDelay.Enabled = enabled;
 
                 rtbResponse.Enabled = enabled;
+                toolStripButtonRemovePattern.Enabled = enabled;
             }
         }
 
@@ -207,18 +212,9 @@ namespace Restward.UserControls
 
         private void txtAddress_TextChanged(object sender, EventArgs e)
         {
-            if (txtAddress.Text.Length <= m_EndpointData.Owner.ListenerAddress.Length && txtAddress.Text != m_EndpointData.Owner.ListenerAddress)
-            {
-                txtAddress.Text = m_EndpointData.Owner.ListenerAddress;
-                txtAddress.SelectionStart = txtAddress.Text.Length;
-                txtAddress.SelectionLength = 0;
-            }
-            else
-            {
-                string parsedEndpointAddress = txtAddress.Text.Remove(0, m_EndpointData.Owner.ListenerAddress.Length);
-                //validate url - todo
-                m_EndpointData.HttpEndpointAddress = parsedEndpointAddress;
-            }
+            //validate url - todo
+            m_EndpointData.HttpEndpointAddress = txtAddress.Text;
+            lblListenerAddress.Text = m_EndpointData.Owner.ListenerAddress + m_EndpointData.HttpEndpointAddress;
         }
 
         private void checkBoxReponseDelay_CheckedChanged(object sender, EventArgs e)
@@ -268,7 +264,7 @@ namespace Restward.UserControls
         {
             if (e.RestServer == m_EndpointData.Owner && e.PropertyName == "ListenerAddress")
             {
-                txtAddress.Text = e.RestServer.ListenerAddress + m_EndpointData.HttpEndpointAddress;
+                lblListenerAddress.Text = e.RestServer.ListenerAddress + m_EndpointData.HttpEndpointAddress;
             }
         }
 
@@ -327,6 +323,20 @@ namespace Restward.UserControls
             else
             {
                 UpdateSelectedPattern(null);
+            }
+        }
+
+        private void toolStripButtonRemovePattern_Click(object sender, EventArgs e)
+        {
+            if (listViewResponses.SelectedItems.Count == 1)
+            {
+                ListViewItem thisItem = listViewResponses.SelectedItems[0];
+                if (thisItem.Tag is PatternData)
+                {
+                    PatternData thisData = thisItem.Tag as PatternData;
+                    m_EndpointData.RemovePattern(thisData);
+                    thisItem.Remove();
+                }
             }
         }
     }

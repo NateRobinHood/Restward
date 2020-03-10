@@ -123,6 +123,9 @@ namespace Restward.Data
 
         public string GetResponse()
         {
+            if (m_UseResponseDelay)
+                Thread.Sleep(m_ResponseDelay);
+
             return m_ResponseBody;
         }
 

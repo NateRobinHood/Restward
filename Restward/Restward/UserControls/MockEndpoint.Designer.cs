@@ -45,6 +45,8 @@
             this.lblMs = new System.Windows.Forms.Label();
             this.groupBoxMatch = new System.Windows.Forms.GroupBox();
             this.groupBoxReponse = new System.Windows.Forms.GroupBox();
+            this.lblListenerAddress = new System.Windows.Forms.Label();
+            this.toolStripButtonRemovePattern = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.groupBoxMatch.SuspendLayout();
             this.groupBoxReponse.SuspendLayout();
@@ -54,7 +56,8 @@
             // 
             this.toolStripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonAdd});
+            this.toolStripButtonAdd,
+            this.toolStripButtonRemovePattern});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(606, 25);
@@ -109,9 +112,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbResponse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbResponse.Location = new System.Drawing.Point(0, 216);
+            this.rtbResponse.Location = new System.Drawing.Point(0, 232);
             this.rtbResponse.Name = "rtbResponse";
-            this.rtbResponse.Size = new System.Drawing.Size(606, 204);
+            this.rtbResponse.Size = new System.Drawing.Size(606, 188);
             this.rtbResponse.TabIndex = 5;
             this.rtbResponse.Text = "";
             this.rtbResponse.TextChanged += new System.EventHandler(this.rtbResponse_TextChanged);
@@ -132,10 +135,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewResponses.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listViewResponses.HideSelection = false;
-            this.listViewResponses.Location = new System.Drawing.Point(0, 47);
+            this.listViewResponses.Location = new System.Drawing.Point(0, 66);
             this.listViewResponses.Name = "listViewResponses";
             this.listViewResponses.OwnerDraw = true;
-            this.listViewResponses.Size = new System.Drawing.Size(301, 163);
+            this.listViewResponses.Size = new System.Drawing.Size(301, 160);
             this.listViewResponses.TabIndex = 6;
             this.listViewResponses.UseCompatibleStateImageBehavior = false;
             this.listViewResponses.View = System.Windows.Forms.View.List;
@@ -201,7 +204,7 @@
             this.groupBoxMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxMatch.Controls.Add(this.comboBoxHttpMethod);
             this.groupBoxMatch.Controls.Add(this.lblHttpMethod);
-            this.groupBoxMatch.Location = new System.Drawing.Point(307, 54);
+            this.groupBoxMatch.Location = new System.Drawing.Point(307, 70);
             this.groupBoxMatch.Name = "groupBoxMatch";
             this.groupBoxMatch.Size = new System.Drawing.Size(296, 49);
             this.groupBoxMatch.TabIndex = 14;
@@ -218,17 +221,41 @@
             this.groupBoxReponse.Controls.Add(this.txtResponseDelay);
             this.groupBoxReponse.Controls.Add(this.lblContentType);
             this.groupBoxReponse.Controls.Add(this.checkBoxReponseDelay);
-            this.groupBoxReponse.Location = new System.Drawing.Point(307, 109);
+            this.groupBoxReponse.Location = new System.Drawing.Point(307, 125);
             this.groupBoxReponse.Name = "groupBoxReponse";
             this.groupBoxReponse.Size = new System.Drawing.Size(296, 101);
             this.groupBoxReponse.TabIndex = 15;
             this.groupBoxReponse.TabStop = false;
             this.groupBoxReponse.Text = "Response";
             // 
+            // lblListenerAddress
+            // 
+            this.lblListenerAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblListenerAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblListenerAddress.Location = new System.Drawing.Point(0, 47);
+            this.lblListenerAddress.Name = "lblListenerAddress";
+            this.lblListenerAddress.Size = new System.Drawing.Size(606, 20);
+            this.lblListenerAddress.TabIndex = 16;
+            this.lblListenerAddress.Text = "http://localhost:55000/";
+            this.lblListenerAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripButtonRemovePattern
+            // 
+            this.toolStripButtonRemovePattern.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRemovePattern.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRemovePattern.Image")));
+            this.toolStripButtonRemovePattern.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRemovePattern.Name = "toolStripButtonRemovePattern";
+            this.toolStripButtonRemovePattern.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonRemovePattern.Text = "toolStripButton1";
+            this.toolStripButtonRemovePattern.ToolTipText = "Remove Pattern";
+            this.toolStripButtonRemovePattern.Click += new System.EventHandler(this.toolStripButtonRemovePattern_Click);
+            // 
             // MockEndpoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblListenerAddress);
             this.Controls.Add(this.groupBoxReponse);
             this.Controls.Add(this.groupBoxMatch);
             this.Controls.Add(this.listViewResponses);
@@ -266,5 +293,7 @@
         private System.Windows.Forms.Label lblMs;
         private System.Windows.Forms.GroupBox groupBoxMatch;
         private System.Windows.Forms.GroupBox groupBoxReponse;
+        private System.Windows.Forms.Label lblListenerAddress;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRemovePattern;
     }
 }
