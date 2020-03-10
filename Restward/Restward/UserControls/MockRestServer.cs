@@ -80,6 +80,7 @@ namespace Restward.UserControls
             m_RestServerData.OnEndpointAdded += RestServerData_OnEndpointAdded;
             m_RestServerData.OnEndpointRemoved += RestServerData_OnEndpointRemoved;
             m_RestServerData.OnEndpointChanged += RestServerData_OnEndpointChanged;
+            m_RestServerData.PropertyChanged += RestServerData_PropertyChanged;
             ProjectData.RestServerManager.OnRestServerTrace += RestServerManager_OnRestServerTrace;
             ProjectData.RestServerManager.OnRestServerStarted += RestServerManager_OnRestServerStarted;
             ProjectData.RestServerManager.OnRestServerStopped += RestServerManager_OnRestServerStopped;
@@ -285,6 +286,14 @@ namespace Restward.UserControls
                     thisItem.Text = $"{e.Endpoint.Name}({e.Endpoint.HttpEndpointAddress}          )";
                     thisItem.Text = $"{e.Endpoint.Name}({e.Endpoint.HttpEndpointAddress})";
                 }
+            }
+        }
+
+        private void RestServerData_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "AuthToken")
+            {
+                txtAuthToken.Text = m_RestServerData.AuthToken;
             }
         }
 
